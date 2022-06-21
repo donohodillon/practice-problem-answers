@@ -1,4 +1,44 @@
+import java.util.Locale;
+
 public class CodeWars1 {
+//    This time no story, no theory. The examples below show you how to write function accum:
+//
+//    Examples:
+//    accum("abcd") -> "A-Bb-Ccc-Dddd"
+//    accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+//    accum("cwAt") -> "C-Ww-Aaa-Tttt"
+//    The parameter of accum is a string which includes only letters from a..z and A..Z.
+
+    public static String accumul (String s) {
+        String answer = "";
+        for (int i = 0; i < s.length(); i++){
+            for (int j = 0; j <= i; j++){
+                if (j == 0)
+                    answer += s.toUpperCase(Locale.ROOT).substring(i, i + 1);
+                else {
+                    answer += s.toLowerCase(Locale.ROOT).substring(i, i + 1);
+                }
+                if (j == i && j != s.length()-1)
+                    answer += "-";
+            }
+        }
+        return answer;
+    }
+
+    public class accumul2 {
+        public static String accum(String s) {
+            StringBuilder bldr = new StringBuilder();
+            int i = 0;
+            for(char c : s.toCharArray()) {
+                if(i > 0) bldr.append('-');
+                bldr.append(Character.toUpperCase(c));
+                for(int j = 0; j < i; j++) bldr.append(Character.toLowerCase(c));
+                i++;
+            }
+            return bldr.toString();
+        }
+    }
+
     public static int expressionsMatter(int a, int b, int c)
     {
         return  Math.max(Math.max(a + b + c, a * b * c),Math.max ((a + b) * c, a * (b + c)));
@@ -44,5 +84,6 @@ public class CodeWars1 {
 //        System.out.println(expressionsMatter(1,3,9));
 //        System.out.println(getCount("boobs"));
 //        System.out.println(validateTriangle(1,2,3));
+        System.out.println(accumul("abjdls"));
     }
 }
